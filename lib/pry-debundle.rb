@@ -125,6 +125,7 @@ class Pry
     # Ugh, this stuff is quite vile.
     def remove_bundler_monkeypatches
       if rubygems_20_or_better?
+        Kernel.send :remove_const, :RUBYGEMS_ACTIVATION_MONITOR
         load 'rubygems/core_ext/kernel_require.rb'
       else
         load 'rubygems/custom_require.rb'
